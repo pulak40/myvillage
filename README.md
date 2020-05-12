@@ -1,2 +1,2 @@
 # myvillage
-small scale web project 
+small scale web project
