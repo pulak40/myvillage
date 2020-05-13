@@ -42,9 +42,9 @@
       <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
         <li><a data-toggle="tab" href="#menu1">Sign Up</a></li>
-        <li><a data-toggle="tab" href="#menu2">Contact</a></li>
+        <!-- <li><a data-toggle="tab" href="#menu2">Contact</a></li> -->
         <li><a data-toggle="tab" href="#menu3">About Us</a></li>
-        <!-- <li><a data-toggle="tab" href="#menu4">Settings</a></li> -->
+        <li><a data-toggle="tab" href="#menu4">Settings</a></li>
       </ul>
 
       <div class="tab-content">
@@ -115,7 +115,7 @@
                 <label><input type="checkbox"> Remember my choice</label>
               </div> -->
               <button type="submit" id="btnSignedUp" class="btn btn-default">Submit</button>
-            </form>            
+            </form>
           </div>
         </div>
         <div id="menu2" class="tab-pane fade">
@@ -128,10 +128,12 @@
           <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
         </div>
         <div id="menu4" class="tab-pane fade">
-          <h3>If you want to clear all your brower Settings</h3>
-          <a href='#'>Click Here</a>
-          <p>** Note - Don't perform this action on regular basis, this action is mostly if your browser is not showing
-            the latest update
+          <h4>If you want to clear all your brower Settings</h4>
+          <a href='#' onclick="clearStorage()">Click Here</a>
+          <p></p>
+          <p><strong>** Note</strong> - Don't perform this action on regular basis, this action is mostly if your
+            browser is not showing
+            the latest update. Or you encounter some issue on village list not populating or any other type of issues.
           </p>
         </div>
       </div>
@@ -152,11 +154,7 @@
     m == null || $('#mobile').val(m) && $('#phone').val(m);
 
     makeDropdown($('#village'), data.villageList, 'Choose...', v);
-    $('#village').on('change', function (e, args) {
-      var k = $('#village').val();
-      u.setCache("village", k);
-    });
-
+    
     if (obj != null) {
       if (obj.isSignedUp) {
         u.firstName = obj.firstName;
@@ -167,17 +165,19 @@
         console.log('You are already signedUP')
       }
     }
-    
+
   });
   function onLoginSubmit() {
     var k = $('#mobile').val();
-    
-    u.setCache('mobile', k)
+    u.setCache('mobile', k);
+    var l = $('#village').val();
+    u.setCache("village", l);
+
     return true;
   }
   function onSignedUp() {
-    if ($('#btnSignedUp').text() == 'Edit'){
-      $('#signedUP input').prop('readonly',false);
+    if ($('#btnSignedUp').text() == 'Edit') {
+      $('#signedUP input').prop('readonly', false);
       $('#btnSignedUp').text('Submit');
       $('#msgSignedUP').hide();
       return false;
@@ -193,15 +193,19 @@
     showUserInfo();
     return false;
   }
-  function showUserInfo() {      
+  function showUserInfo() {
     $('#fName').val(u.firstName);
     $('#lName').val(u.lastName);
     $('#phone').val(u.mobile);
     $('#email').val(u.email);
     $('#btnSignedUp').text('Edit');
     $('#msgSignedUP').show();
-    $('#signedUP input').prop('readonly',true);
-    $('#home input').prop('readonly',true);
+    $('#signedUP input').prop('readonly', true);
+    $('#home input').prop('readonly', true);
+  }
+  function clearStorage() {    
+    localStorage.clear();
+    location.reload();
   }
 </script>
 
