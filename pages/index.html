@@ -9,8 +9,9 @@
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="../js/villageResource.js"></script>
-  <script src="../js/common.js"></script>
+  <script src="../js/villageResource.js?v=1.0"></script>
+  <script src="../js/common.js?v=1.0"></script>
+  <script src="../js/userInfo.js?v=1.0"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js" ></script> -->
 </head>
 <style>
@@ -29,7 +30,7 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="jumbotron" style="background-color: skyblue;margin-bottom: 1px;">
+      <div class="jumbotron" style="background-color: skyblue;margin-bottom: 1px; padding: 10px 5px 10px 15px;">
         <h1>Welcome!</h1>
         <h1>Amader Gram</h1>
       </div>
@@ -43,29 +44,30 @@
         <li><a data-toggle="tab" href="#menu1">Sign Up</a></li>
         <li><a data-toggle="tab" href="#menu2">Contact</a></li>
         <li><a data-toggle="tab" href="#menu3">About Us</a></li>
+        <!-- <li><a data-toggle="tab" href="#menu4">Settings</a></li> -->
       </ul>
 
       <div class="tab-content">
         <div id="home" class="tab-pane fade in active">
           <h3></h3>
           <div class="container">
-            <form id="loginSubmit" action="myvillage.html" autocomplete="on">
+            <form id="loginSubmit" action="myvillage.html" autocomplete="on" onsubmit="return onLoginSubmit();">
               <div class="form-group">
-                <label for="village">Select Your Village:</label>
+                <label for="village">Select Your Village:</label><span style="color: red;">*</span>
                 <select required class="form-control" id="village"
                   oninvalid="setCustomValidity('Please choose a village!')"
                   onchange="try{setCustomValidity('')}catch(e){}">
                 </select>
               </div>
               <div class="form-group">
-                <label for="mobile">Mobile:</label>
+                <label for="mobile">Mobile:</label><span style="color: red;">*</span>
                 <input type="tel" required class="form-control" pattern="[7-9]{1}[0-9]{9}" maxlength="10" id="mobile"
                   placeholder="Enter a valid phone number!"
                   oninvalid="setCustomValidity('Please enter a valid phone number!')"
                   onchange="try{setCustomValidity('')}catch(e){}">
               </div>
               <div class="checkbox">
-                <label><input type="checkbox"> Remember me</label>
+                <label><input type="checkbox" checked> Remember me</label>
               </div>
               <input type="submit" class="btn btn-default" value="Submit">
             </form>
@@ -74,30 +76,46 @@
         <div id="menu1" class="tab-pane fade">
           <h3></h3>
           <div class="container">
-            <form autocomplete="on">
-              <div class="form-group">
-                <label for="fName">First Name:</label>
-                <input type="text" class="form-control" id="fName">
+            <form id="signedUP" onsubmit="return onSignedUp()" autocomplete="on">
+              <div class="alert alert-success alert-dismissible" style="display: none;" id="msgSignedUP">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> You have signed up for this site.
+                <p>Anything needs to change, please Edit</p>
               </div>
               <div class="form-group">
-                <label for="lName">Last Name:</label>
-                <input type="text" class="form-control" id="lName">
+                <label for="fName">First Name:</label><span style="color: red;">*</span>
+                <input type="text" class="form-control" id="fName" required pattern="[a-zA-Z]{3,50}" minlength="3"
+                  maxlength="50" placeholder="Enter your first name"
+                  oninvalid="setCustomValidity('Please enter a valid first name!')"
+                  onchange="try{setCustomValidity('')}catch(e){}">
               </div>
               <div class="form-group">
-                <label for="mobile">Mobile:</label>
-                <input type="number" class="form-control" id="mobile">
+                <label for="lName">Last Name:</label><span style="color: red;">*</span>
+                <input type="text" class="form-control" id="lName" required pattern="[a-zA-Z]{3,50}" minlength="3"
+                  maxlength="50" placeholder="Enter your last name"
+                  oninvalid="setCustomValidity('Please enter a valid last name!')"
+                  onchange="try{setCustomValidity('')}catch(e){}">
               </div>
-              <label for="email">Email:</label>
-              <input type="email" class="form-control" id="email">
               <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd">
+                <label for="phone">Mobile:</label><span style="color: red;">*</span>
+                <input type="tel" required class="form-control" pattern="[7-9]{1}[0-9]{9}" maxlength="10" id="phone"
+                  placeholder="Enter a valid phone number"
+                  oninvalid="setCustomValidity('Please enter a valid phone number!')"
+                  onchange="try{setCustomValidity('')}catch(e){}">
               </div>
-              <div class="checkbox">
+              <div class="form-group">
+                <label for="email">Email(optional):</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password (optional):</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter minimum 8 char">
+              </div>
+              <!-- <div class="checkbox">
                 <label><input type="checkbox"> Remember my choice</label>
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+              </div> -->
+              <button type="submit" id="btnSignedUp" class="btn btn-default">Submit</button>
+            </form>            
           </div>
         </div>
         <div id="menu2" class="tab-pane fade">
@@ -109,6 +127,13 @@
           <h3>Menu 3</h3>
           <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
         </div>
+        <div id="menu4" class="tab-pane fade">
+          <h3>If you want to clear all your brower Settings</h3>
+          <a href='#'>Click Here</a>
+          <p>** Note - Don't perform this action on regular basis, this action is mostly if your browser is not showing
+            the latest update
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -116,29 +141,68 @@
 <script>
 
   var data = new _DATA();
-  var c = new _CACHE();
+  //var c = new _CACHE();
+  var u = new _USER();
 
   $(document).ready(function () {
-    var v = localStorage.getItem("village");
+
+    var obj = u.getUserInfo();
+    var v = u.getVillage();
+    var m = u.getCache('mobile');
+    m == null || $('#mobile').val(m) && $('#phone').val(m);
 
     makeDropdown($('#village'), data.villageList, 'Choose...', v);
-
-    function makeDropdown(id, data, firstElement, selectedElement) {
-      id.append(
-        $('<option></option>').val('').html(firstElement)
-      );
-      $.each(data, function (index, obj) {
-        id.append(
-          $('<option></option>').val(obj.name).html(obj.name)
-        );
-      });
-      id.val(v);
-    }
-    $('#village').on('change', function(e,args){
-      var v = $('#village').val();
-      c.setCache("village", v);
+    $('#village').on('change', function (e, args) {
+      var k = $('#village').val();
+      u.setCache("village", k);
     });
+
+    if (obj != null) {
+      if (obj.isSignedUp) {
+        u.firstName = obj.firstName;
+        u.lastName = obj.lastName;
+        u.mobile = obj.mobile;
+        u.email = obj.email;
+        showUserInfo();
+        console.log('You are already signedUP')
+      }
+    }
+    
   });
+  function onLoginSubmit() {
+    var k = $('#mobile').val();
+    
+    u.setCache('mobile', k)
+    return true;
+  }
+  function onSignedUp() {
+    if ($('#btnSignedUp').text() == 'Edit'){
+      $('#signedUP input').prop('readonly',false);
+      $('#btnSignedUp').text('Submit');
+      $('#msgSignedUP').hide();
+      return false;
+    }
+    u.firstName = $('#fName').val();
+    u.lastName = $('#lName').val();
+    u.email = $('#email').val();
+    u.mobile = $('#phone').val();
+    u.password = $('#pwd').val();
+    u.isSignedUp = true;
+    u.selectedVillage = '';
+    u.setUserInfo();
+    showUserInfo();
+    return false;
+  }
+  function showUserInfo() {      
+    $('#fName').val(u.firstName);
+    $('#lName').val(u.lastName);
+    $('#phone').val(u.mobile);
+    $('#email').val(u.email);
+    $('#btnSignedUp').text('Edit');
+    $('#msgSignedUP').show();
+    $('#signedUP input').prop('readonly',true);
+    $('#home input').prop('readonly',true);
+  }
 </script>
 
 </html>
