@@ -24,6 +24,15 @@
     height: 100% !important;
     display: flex !important;
   }
+  .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: black;
+   color: white;
+   text-align: center;
+}
 </style>
 
 <body style="height:100%">
@@ -71,6 +80,12 @@
               </div>
               <input type="submit" class="btn btn-default" value="Submit">
             </form>
+            <div class="footer">
+              <p><strong>** Note</strong> If you face any issue, please 
+                <a href='#' onclick="clearStorage()">Click Here</a>
+                 to reload the page.                
+              </p>
+            </div>
           </div>
         </div>
         <div id="menu1" class="tab-pane fade">
@@ -139,6 +154,13 @@
       </div>
     </div>
   </div>
+  <!-- <div class="container" style="overflow: hidden;text-align: left;">
+    <div class="row-fluid" style="padding-bottom: 50px;"></div>
+    <div>
+      
+    </div>
+  </div> -->
+ 
 </body>
 <script>
 
@@ -154,7 +176,7 @@
     m == null || $('#mobile').val(m) && $('#phone').val(m);
 
     makeDropdown($('#village'), data.villageList, 'Choose...', v);
-    
+
     if (obj != null) {
       if (obj.isSignedUp) {
         u.firstName = obj.firstName;
@@ -197,13 +219,14 @@
     $('#fName').val(u.firstName);
     $('#lName').val(u.lastName);
     $('#phone').val(u.mobile);
+    $('#mobile').val(u.mobile);
     $('#email').val(u.email);
     $('#btnSignedUp').text('Edit');
     $('#msgSignedUP').show();
     $('#signedUP input').prop('readonly', true);
     $('#home input').prop('readonly', true);
   }
-  function clearStorage() {    
+  function clearStorage() {
     localStorage.clear();
     location.reload();
   }
