@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>My Village</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -54,22 +54,22 @@
                                     <li><a href="#">Others</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Page 3</a></li>
+                            <li><a href="index.html">Others Village</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a href="#" style="display: none;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="#" style="display: none;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
             <div class="jumbotron text-center">
-                <h1>Welcome to amader Gram</h1>
+                <h1>Welcome to <span id="villageSpan">Amader Gram</span></h1>
             </div>
 
         </div>
-    </div> 
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
@@ -91,5 +91,15 @@
     </div>
 
 </body>
+<script>
+    $(document).ready(function () {
+
+        var v = localStorage.getItem("village");
+        if (v != undefined || v != null) {
+            document.title = v;
+            $("#villageSpan").text(v);
+        }
+    });
+</script>
 
 </html>
