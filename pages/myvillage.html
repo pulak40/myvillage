@@ -26,8 +26,8 @@
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li class="dropdown">
+                            <li ><a href="index.html">Home</a></li>
+                            <li class="dropdown active">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Village<span
                                         class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -66,11 +66,13 @@
                                     <li><a href="#">Others</a></li>
                                 </ul>
                             </li>
-                            <li><a href="index.html">Others Village</a></li>
+                            <!-- <li><a href="index.html">Others Village</a></li> -->
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a href="index.html?tab=signup"><span class="glyphicon glyphicon-user"></span><span
+                                        id='aSignedUp'> Sign Up</span></a></li>
+                            <li><a href="index.html" onclick="logOut()" style="display: none;"><span class="glyphicon glyphicon-log-in"></span>
+                                    <span id="aLogin"> Login</span> </a></li>
                         </ul>
                     </div>
                 </div>
@@ -106,13 +108,32 @@
 <script>
     var u = new _USER();
     $(document).ready(function () {
-
         var v = u.getVillage();
+        var obj = u.getUserInfo();
         if (v != undefined || v != null) {
             document.title = v;
             $("#villageSpan").text(v);
         }
+
+        if (obj != null) {
+            if (obj.isSignedUp) {
+                u.firstName = obj.firstName;
+                u.lastName = obj.lastName;
+                u.mobile = obj.mobile;
+                u.email = obj.email;
+                setLoginUserInfo();
+            }
+        }
     });
+    function setLoginUserInfo() {
+        $('#aLogin').parent().show();
+        $('#aSignedUp').text(' Signed in as ' + u.firstName);
+        $('#aLogin').text(' Logout!');
+    }
+    function logOut() {
+        localStorage.clear();
+        location.reload();
+    }
 </script>
 
 </html>

@@ -24,15 +24,16 @@
     height: 100% !important;
     display: flex !important;
   }
+
   .footer {
-   position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   background-color: black;
-   color: white;
-   text-align: center;
-}
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: left;
+  }
 </style>
 
 <body style="height:100%">
@@ -50,10 +51,10 @@
     <div class="row">
       <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-        <li><a data-toggle="tab" href="#menu1">Sign Up</a></li>
+        <li><a data-toggle="tab" href="#signup">Sign Up</a></li>
         <!-- <li><a data-toggle="tab" href="#menu2">Contact</a></li> -->
-        <li><a data-toggle="tab" href="#menu3">About Us</a></li>
-        <li><a data-toggle="tab" href="#menu4">Settings</a></li>
+        <li><a data-toggle="tab" href="#about">About Us</a></li>
+        <li><a data-toggle="tab" href="#help">Help</a></li>
       </ul>
 
       <div class="tab-content">
@@ -81,14 +82,14 @@
               <input type="submit" class="btn btn-default" value="Submit">
             </form>
             <div class="footer">
-              <p><strong>** Note</strong> If you face any issue, please 
+              <p><strong>** Note</strong> If you face any issue, please
                 <a href='#' onclick="clearStorage()">Click Here</a>
-                 to reload the page.                
+                to reload the page.
               </p>
             </div>
           </div>
         </div>
-        <div id="menu1" class="tab-pane fade">
+        <div id="signup" class="tab-pane fade">
           <h3></h3>
           <div class="container">
             <form id="signedUP" onsubmit="return onSignedUp()" autocomplete="on">
@@ -133,23 +134,64 @@
             </form>
           </div>
         </div>
-        <div id="menu2" class="tab-pane fade">
-          <h3>Menu 2</h3>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-            aperiam.</p>
-        </div>
-        <div id="menu3" class="tab-pane fade">
-          <h3>Menu 3</h3>
-          <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-        </div>
-        <div id="menu4" class="tab-pane fade">
-          <h4>If you want to clear all your brower Settings</h4>
-          <a href='#' onclick="clearStorage()">Click Here</a>
-          <p></p>
-          <p><strong>** Note</strong> - Don't perform this action on regular basis, this action is mostly if your
-            browser is not showing
-            the latest update. Or you encounter some issue on village list not populating or any other type of issues.
+        <div id="about" class="tab-pane fade">
+          <h3 style="text-align: center;">Team <span style="color: blueviolet;">HABLU</span></h3>
+          <p>
+            <strong>
+              <h4>Who we are</h4>
+            </strong>
           </p>
+          <p> We are team HABLU. Looking around the world, and its current COVID19 situation, we are inspired to do
+            something for our village. Being village growing kid, we are always looking for doing something good for our
+            area. But with limited opportunity and resource our idea never flourish. But due to COVID19, we got an
+            unique opportunity to come together and do something good for our community.
+          </p>
+          <p>
+            <strong>
+              <h4>Our Mission</h4>
+            </strong>
+          </p>
+          <p> We are living at unique time of our era. We never thought that we will be in locked down behind the walls
+            for these many days. Being in this state, it helped us redifne our way of think and acting in the world. Being in IT, we
+            came across an unique idea to do something for the greater good for the community. We are looking forward to help people
+            with multitude of information and make there day to day life with ease of access to anything possible.
+          </p>
+          <p>
+            <strong>
+              <h4>Our Vission</h4>
+            </strong>
+          </p>
+          <p> Looking at how the technological era changing our day to day world, we are very optimistic. Technological advancement 
+            is the key aspect for multidimensional progress in human race, whether it is agriculture or automobiles, spacecraft etc. 
+            almost in every direction.We are aiming towards MARS, that itself sound like dreaming for us just a decade ago.
+          </p>
+          <p>
+            With technical advancement we have reached in a new high. But like every high there are some low also, we
+            have to look forward to solve our social aspect also. With technological advancement, we should also look
+            for better human being socially and culturally evolved being.
+          </p>
+        </div>
+        <div id="help" class="tab-pane fade">
+          <h4 style="color: blueviolet;"><strong> Village data not refreshing</strong></h4>
+          <p><a href='#' onclick="clearStorage()"> Click Here</a> to refresh the list. This action will also
+            clear any login information.
+          </p>
+          <p></p>
+          <h4 style="color: blueviolet;"><strong> Sign up not working</strong></h4>
+          <p><strong><a href='#' onclick="clearStorage()"> Reset</a> the page data. This will most likely resolve the
+              issue.</strong>
+          </p>
+          <h4 style="color: blueviolet;"><strong> Any other type of Technical/Data issue</strong></h4>
+          <p><strong> Please contact <a href="mailto:ptest2020@gmail.com">ptest2020@gmail.com</a></strong></p>
+          <p></p>
+          <hr>
+          <div class="footer" style="text-align: left;">
+            <p><strong> ** Note</strong> - Above steps are some quick fix tips.
+              Don't perform this action on regular basis, these action are mostly if you are experiencing some issues.
+              The site data update periodically, sometime this enhancements causing some temporarily issue.
+
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -160,12 +202,11 @@
       
     </div>
   </div> -->
- 
+
 </body>
 <script>
 
   var data = new _DATA();
-  //var c = new _CACHE();
   var u = new _USER();
 
   $(document).ready(function () {
@@ -187,6 +228,9 @@
         console.log('You are already signedUP')
       }
     }
+    var params = new URLSearchParams(location.search);
+    var tab = params.get('tab');
+    ((tab == 'signup') && ($('.nav-tabs a[href="#signup"]').tab('show')));
 
   });
   function onLoginSubmit() {
