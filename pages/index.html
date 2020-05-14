@@ -30,7 +30,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: black;
+    background-color: rgb(33, 34, 27);
     color: white;
     text-align: left;
   }
@@ -47,7 +47,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs" style="background: rgb(2, 34, 1);">
         <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
         <li><a data-toggle="tab" href="#signup">Sign Up</a></li>
         <!-- <li><a data-toggle="tab" href="#menu2">Contact</a></li> -->
@@ -76,7 +76,7 @@
               <div class="checkbox">
                 <label><input type="checkbox" checked> Remember me</label>
               </div>
-              <input type="submit" class="btn btn-default" value="Submit">
+              <input type="submit" class="btn btn-primary" value="Submit">
             </form>
             <div class="footer">
               <p><strong>** Note</strong> If you face any issue, please
@@ -93,7 +93,7 @@
               <div class="alert alert-success alert-dismissible" style="display: none;" id="msgSignedUP">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Success!</strong> You have signed up for this site.
-                <p>Anything needs to change, please Edit</p>
+                <p>For any change, please click on Edit</p>
               </div>
               <div class="form-group">
                 <label for="fName">First Name:</label><span style="color: red;">*</span>
@@ -175,8 +175,8 @@
         </div>
         <div id="help" class="tab-pane fade">
           <h4 style="color: blueviolet;"><strong> Village data not refreshing</strong></h4>
-          <p><a href='#' onclick="clearStorage()"> Click Here</a> to refresh the list. This action will also
-            clear any login information.
+          <p><strong><a href='#' onclick="clearStorage()"> Click Here</a> to refresh the list. This action will also
+            clear any login information.</strong>
           </p>
           <p></p>
           <h4 style="color: blueviolet;"><strong> Sign up not working</strong></h4>
