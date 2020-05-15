@@ -60,6 +60,9 @@
               </div>
               <input type="submit" class="btn btn-primary" value="Submit">
             </form>
+            <div style="left:0;right:0;position: fixed;">
+              <hr>
+            </div>
             <div class="footer">
               <p><strong>** Note</strong> If you face any issue, please
                 <a href='#' onclick="clearStorage()">Click Here</a>
@@ -201,6 +204,10 @@
         makeDropdown($('#village'), d, 'Choose...', v);
       })
       .catch(error =>{
+        var d = [{"id":1,"name":"Jotghanashyam","pincode":"100"},
+        {"id":2,"name":"Palashpai","pincode":"721146"},{"id":3,"name":"Sitapur","pincode":"101"},
+        {"id":4,"name":"Bghawanchalk","pincode":"103"}];
+        makeDropdown($('#village'), d, 'Choose...', v);
         console.log(error);
       })
 

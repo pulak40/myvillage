@@ -18,6 +18,13 @@ color: white;
 text-align: left;
 }
 
+.my-boder{
+border: solid 1px;
+}
+.my-boder-right{
+    border-right: solid 1px;
+}
+
 .bd-blue {
 font-weight: bold;
 color: mediumblue;
