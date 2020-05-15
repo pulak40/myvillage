@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>My Village</title>
+    <title>Joteghanashyam</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -88,30 +88,44 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div id="villageContent"></div>
-            <!-- <iframe src="#" id="villageFrame" width="100%" height="100%" style="display: none;"></iframe> -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-4 no-padding">
+                        <h3></h3>
+                        <p><b class="bd-blue">Jotghanashyam</b> is a village and a gram panchayat in
+                            <b class="bd-blue">Daspur II </b> Block in
+                            <b class="bd-blue">Ghatal subdivision</b> of <b class="bd-blue">Paschim
+                                Medinipur district</b> in the state of <b class="bd-blue">West Bengal, India</b>.</p>
+                        <h3></h3>
+                        <h4 class="bd-heading">Geography</h4>
+                        <hr style="margin: 0px 0px 5px 0px; ">
+                        <p>There are six villages under Jotghnashyam gram panchayat: <b>Joteghanashyam,
+                                Satpota, Gourichak, Donabhanga, Gomokpota and Narayanchak</b>.</p>
+                        <h3></h3>
+                        <h4 class="bd-heading">Demographics</h4>
+                        <hr style="margin: 0px 0px 5px 0px; ">
+                        <p>As per<b class="bd-blue"> 2011 Census of India </b> Jotghanashaym had a total population of
+                            15,200 of which 7,833 (52%)
+                            were males and 7,367 (48%) were females. Population below 6 years was 1,616. The total
+                            number of
+                            literates in Jot Ghanashyam was 11,851 (77.97% of the population over 6 years)</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div style="position:relative;"><a href="#"
+                                class="image" title="Joteghanashyam is located in West Bengal"><img
+                                    alt="Joteghanashyam is located in West Bengal" src="../img/wb_map_3.png"
+                                    decoding="async"></a>                            
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Column 3</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="container-fluid" id="altVillageContent">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3>Column 1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-            </div>
-            <div class="col-sm-4">
-                <h3>Column 2</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-            </div>
-            <div class="col-sm-4">
-                <h3>Column 3</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-            </div>
-        </div>
-    </div>
-
 </body>
 <script>
     var u = new _USER();
@@ -122,7 +136,6 @@
             document.title = v;
             $("#villageSpan").text(v);
             $("#aVillage").text(v);
-            showVillageContent();
         }
 
         if (obj != null) {
@@ -139,23 +152,6 @@
         $('#aLogin').parent().show();
         $('#aSignedUp').text(' Signed in as ' + u.firstName);
         $('#aLogin').text(' Logout!');
-    }
-    function showVillageContent() {
-        $.ajax({
-            url: './villages/' + u.getVillage().toLowerCase() + '.html',
-            type: 'GET',
-            success: function (data) {
-                //var content = $('<div>').append(data).find('#content');
-                $('#altVillageContent').hide();
-                $('#villageContent').html(data);
-            }
-        }).fail(function (jqXHR, textStatus, error) {
-            // Handle error here
-            if (location.href.search('pulak40') < 0) {
-                location.href = '../ignore/' + u.getVillage().toLowerCase() + '.html';
-            }
-        });
-        ;
     }
     function logOut() {
         localStorage.clear();
