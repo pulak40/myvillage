@@ -151,7 +151,9 @@
             }
         }).fail(function (jqXHR, textStatus, error) {
             // Handle error here
-            location.href = '../ignore/' + u.getVillage().toLowerCase() + '.html';
+            if (location.href.search('pulak40') < 0) {
+                location.href = '../ignore/' + u.getVillage().toLowerCase() + '.html';
+            }
         });
         ;
     }
