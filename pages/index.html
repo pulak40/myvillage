@@ -197,8 +197,8 @@
     m == null || $('#mobile').val(m) && $('#phone').val(m);
 
     data.villageList()
-      .then(data=>{
-        makeDropdown($('#village'), data.villageList, 'Choose...', v);
+      .then(d=>{
+        makeDropdown($('#village'), d, 'Choose...', v);
       })
       .catch(error =>{
         console.log(error);
