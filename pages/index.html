@@ -127,7 +127,7 @@
               <!-- <div class="checkbox">
                 <label><input type="checkbox"> Remember my choice</label>
               </div> -->
-              <button type="submit" id="btnSignedUp" class="btn btn-default">Submit</button>
+              <button type="submit" id="btnSignedUp" class="btn btn-primary">Submit</button>
             </form>
           </div>
         </div>
@@ -180,7 +180,7 @@
           </p>
           <p></p>
           <h4 style="color: blueviolet;"><strong> Sign up not working</strong></h4>
-          <p><strong><a href='#' onclick="clearStorage()"> Reset</a> the page data. This will most likely resolve the
+          <p><strong><a href='#' onclick="clearStorage('signup')"> Reset</a> the page data. This will most likely resolve the
               issue.</strong>
           </p>
           <h4 style="color: blueviolet;"><strong> Any other type of Technical/Data issue</strong></h4>
@@ -231,7 +231,7 @@
     }
     var params = new URLSearchParams(location.search);
     var tab = params.get('tab');
-    ((tab == 'signup') && ($('.nav-tabs a[href="#signup"]').tab('show')));
+    gotoTab(tab);
 
   });
   function onLoginSubmit() {
@@ -241,6 +241,10 @@
     u.setCache("village", l);
 
     return true;
+  }
+  function gotoTab(tab){
+    ((tab == 'signup') && ($('.nav-tabs a[href="#signup"]').tab('show')));
+    ((tab == 'home') && ($('.nav-tabs a[href="#home"]').tab('show')));
   }
   function onSignedUp() {
     if ($('#btnSignedUp').text() == 'Edit') {
@@ -271,9 +275,9 @@
     $('#signedUP input').prop('readonly', true);
     $('#home input').prop('readonly', true);
   }
-  function clearStorage() {
-    localStorage.clear();
-    location.reload();
+  function clearStorage(tab) {
+    localStorage.clear();    
+    location.href = 'index.html' + ((tab !=undefined ? ('?tab=' + tab):''));
   }
 </script>
 

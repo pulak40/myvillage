@@ -18,16 +18,16 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"
-                        style="float: left;">
+                            style="float: left;">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#" id='aVillage'>AmaderGram</a>
+                        <a class="navbar-brand" href="#" id='aVillage' style="color: white;">AmaderGram</a>
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li ><a href="index.html">Home</a></li>
+                            <li><a href="index.html">Home</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Village<span
                                         class="caret"></span></a>
@@ -72,20 +72,27 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="index.html?tab=signup"><span class="glyphicon glyphicon-user"></span><span
                                         id='aSignedUp'> Sign Up</span></a></li>
-                            <li><a href="index.html" onclick="logOut()" style="display: none;"><span class="glyphicon glyphicon-log-in"></span>
+                            <li><a href="index.html" onclick="logOut()" style="display: none;"><span
+                                        class="glyphicon glyphicon-log-in"></span>
                                     <span id="aLogin"> Login</span> </a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
-            <div class="jumbotron text-center" style="padding: 10px 5px 10px 15px;">
-                <h1>Welcome to <span id="villageSpan">Amader Gram</span></h1>
+            <div class="jumbotron text-center" style="margin-bottom: 1px; padding: 1px 5px 5px 5px;">
+                <h2 style="margin-top: 10px;">Welcome to <span id="villageSpan">Amader Gram</span></h2>
             </div>
 
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="villageContent"></div>
+            <iframe src="#" id="villageFrame" width="100%" height="100%" style="display: none;"></iframe>
+        </div>
+    </div>
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-4">
                 <h3>Column 1</h3>
@@ -113,8 +120,9 @@
         var obj = u.getUserInfo();
         if (v != undefined || v != null) {
             document.title = v;
-            $("#villageSpan").text(v);            
+            $("#villageSpan").text(v);
             $("#aVillage").text(v);
+            showVillageFrame();
         }
 
         if (obj != null) {
@@ -131,6 +139,19 @@
         $('#aLogin').parent().show();
         $('#aSignedUp').text(' Signed in as ' + u.firstName);
         $('#aLogin').text(' Logout!');
+    }
+    function showVillageFrame() {
+        $.ajax({
+            url: './villages/joteghanashyam.xht',
+            type: 'GET',
+            success: function (data) {
+                var content = $('<div>').append(data).find('#content');
+                $('#villageContent').html('');
+            }
+        });
+        //$('#villageFrame').show();
+        //$("#villageFrame").attr("src", './villages/joteghanashyam.html');
+        //$("#villageContent").load("./villages/joteghanashyam.html div#villageContent");
     }
     function logOut() {
         localStorage.clear();
