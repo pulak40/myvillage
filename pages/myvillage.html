@@ -149,8 +149,11 @@
                 $('#altVillageContent').hide();
                 $('#villageContent').html(data);
             }
-            
-        });        
+        }).fail(function (jqXHR, textStatus, error) {
+            // Handle error here
+            location.href = '../ignore/' + u.getVillage().toLowerCase() + '.html';
+        });
+        ;
     }
     function logOut() {
         localStorage.clear();

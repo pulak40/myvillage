@@ -1,0 +1,30 @@
+.my-center-div {
+margin-bottom: auto !important;
+margin-top: auto !important;
+}
+
+.my-center-container {
+height: 100% !important;
+display: flex !important;
+}
+
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: rgb(2, 15, 1);;
+color: white;
+text-align: left;
+}
+
+.bd-blue {
+font-weight: bold;
+color: mediumblue;
+}
+.bd-heading {
+font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+}
+.no-padding {
+padding: 0px 0px 0px 0px;
+}
