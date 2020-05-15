@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Jotghanashyam",
+    "pincode": "100"
+  },
+  {
+    "id": 2,
+    "name": "Palashpai",
+    "pincode": "721146"
+  },
+  {
+    "id": 3,
+    "name": "Sitapur",
+    "pincode": "101"
+  }
+]
