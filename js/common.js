@@ -15,7 +15,7 @@ function makeDropdown(id, data, firstElement, selectedElement) {
   );
   $.each(data, function (index, obj) {
     id.append(
-      $('<option></option>').val(obj.name).html(obj.name)
+      $('<option></option>').val(obj.value).html(obj.name)
     );
   });
   id.val(selectedElement);
@@ -38,4 +38,25 @@ function constructAPICall(obj) {
       }
     });
   });
+}
+function searchTable(colIn) {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[colIn];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+function loadDynamicContent(id, data){
+  $('#' + id).html(data);
 }

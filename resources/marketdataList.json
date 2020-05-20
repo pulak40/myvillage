@@ -1,0 +1,40 @@
+[
+    { "category": "shop-grocery", "name": "Shop1", "price":"", "qty":""
+    },
+    { "category": "shop-grocery", "name": "Joga Chop Shop", "price":"", "qty":""
+    },
+    { "category": "shop-others", "name": "Sujit Station Multi", "price":"", "qty":""
+    },
+    { "category": "shop-grocery", "name": "Shop2", "price":"", "qty":""
+    },
+    { "category": "shop-sweets", "name": "Calcutta Sweets", "price":"", "qty":""
+    },
+    { "category": "shop-grocery", "name": "Shop4 Shp2 ", "price":"", "qty":""
+    },
+    { "category": "shop-grocery", "name": "Shop5 Shop2 ", "price":"", "qty":""
+    },
+    { "category": "shop-grocery", "name": "Shop6 Sgh Dhjok", "price":"", "qty":""
+    },
+    { "category": "shop-grocery", "name": "Shop7", "price":"", "qty":""
+    },
+    { "category": "shop-grocery", "name": "Shop8", "price":"", "qty":""
+    },
+    { "category": "food-veg", "name": "Potato\\Alu", "price":"10", "qty":"1 KG"
+    },
+    { "category": "food-veg", "name": "Onion", "price":"30", "qty":"1 KG"
+    },
+    { "category": "food-veg", "name": "Masoor dal", "price":"10", "qty":"1 KG"
+    },
+    { "category": "food-veg", "name": "Oil - Packeeged", "price":"100", "qty":"1 KG"
+    },
+    { "category": "food-veg", "name": "Mung Dal", "price":"10", "qty":"1 KG"
+    },
+    { "category": "food-veg", "name": "Salt\\Noon", "price":"5", "qty":"1 KG"
+    },
+    { "category": "food-veg", "name": "Potato", "price":"10", "qty":"1 KG"
+    },
+    { "category": "food-veg", "name": "Potato", "price":"10", "qty":"1 KG"
+    },
+    { "category": "food-veg", "name": "Potato", "price":"10", "qty":"1 KG"
+    },
+]

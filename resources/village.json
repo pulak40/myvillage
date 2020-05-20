@@ -2,21 +2,25 @@
     {
       "id": 1,
       "name": "Jotghanashyam",
+      "value": "Jotghanashyam",
       "pincode": "100"
     },
     {
       "id": 2,
       "name": "Palashpai",
+      "value": "Palashpai",
       "pincode": "721146"
     },
     {
       "id": 3,
       "name": "Sitapur",
+      "value": "Sitapur",
       "pincode": "101"
     },
     {
         "id": 4,
-        "name": "Bghawanchalk",
+        "name": "Bhagaban Chak",
+        "value": "Bhagaban Chak",
         "pincode": "103"
       }
   ]

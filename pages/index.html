@@ -6,18 +6,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../resources/theme/village.css">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="../js/resource.js?v=1.0"></script>
-  <script src="../js/common.js?v=1.0"></script>
-  <script src="../js/userInfo.js?v=1.0"></script>
+  <script src="../js/require.js"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js" ></script> -->
 </head>
 <style>
-  
+
 </style>
+
 <body style="height:100%">
   <div class="container-fluid">
     <div class="row">
@@ -108,7 +106,7 @@
               <div class="form-group">
                 <label for="pwd">Password (optional):</label>
                 <input type="password" class="form-control" id="pwd" placeholder="Enter minimum 8 char">
-              </div>              
+              </div>
               <button type="submit" id="btnSignedUp" class="btn btn-primary">Submit</button>
             </form>
           </div>
@@ -158,11 +156,12 @@
         <div id="help" class="tab-pane fade">
           <h4 style="color: blueviolet;"><strong> Village data not refreshing</strong></h4>
           <p><strong><a href='#' onclick="clearStorage()"> Click Here</a> to refresh the list. This action will also
-            clear any login information.</strong>
+              clear any login information.</strong>
           </p>
           <p></p>
           <h4 style="color: blueviolet;"><strong> Sign up not working</strong></h4>
-          <p><strong><a href='#' onclick="clearStorage('signup')"> Reset</a> the page data. This will most likely resolve the
+          <p><strong><a href='#' onclick="clearStorage('signup')"> Reset</a> the page data. This will most likely
+              resolve the
               issue.</strong>
           </p>
           <h4 style="color: blueviolet;"><strong> Any other type of Technical/Data issue</strong></h4>
@@ -189,42 +188,45 @@
 </body>
 <script>
 
-  var data = new _DATA();
-  var u = new _USER();
+  var data;
+  var u;
 
   $(document).ready(function () {
+    var require = new _require();
+    require.loadRequiredFiles(['userInfo', 'resource', 'common'], ['village'], function () {
+      data= new _DATA();
+      u= new _USER();
+      var obj = u.getUserInfo();
+      var v = u.getVillage();
+      var m = u.getCache('mobile');
+      m == null || $('#mobile').val(m) && $('#phone').val(m);
 
-    var obj = u.getUserInfo();
-    var v = u.getVillage();
-    var m = u.getCache('mobile');
-    m == null || $('#mobile').val(m) && $('#phone').val(m);
+      data.villageList()
+        .then(d => {
+          makeDropdown($('#village'), d, 'Choose...', v);
+        })
+        .catch(error => {
+          var d = [{ "id": 1, "name": "Jotghanashyam", "pincode": "100" },
+          { "id": 2, "name": "Palashpai", "pincode": "721146" }, { "id": 3, "name": "Sitapur", "pincode": "101" },
+          { "id": 4, "name": "Bhagaban Chak", "pincode": "103" }];
+          makeDropdown($('#village'), d, 'Choose...', v);
+          console.log(error);
+        })
 
-    data.villageList()
-      .then(d=>{
-        makeDropdown($('#village'), d, 'Choose...', v);
-      })
-      .catch(error =>{
-        var d = [{"id":1,"name":"Jotghanashyam","pincode":"100"},
-        {"id":2,"name":"Palashpai","pincode":"721146"},{"id":3,"name":"Sitapur","pincode":"101"},
-        {"id":4,"name":"Bghawanchalk","pincode":"103"}];
-        makeDropdown($('#village'), d, 'Choose...', v);
-        console.log(error);
-      })
-
-    if (obj != null) {
-      if (obj.isSignedUp) {
-        u.firstName = obj.firstName;
-        u.lastName = obj.lastName;
-        u.mobile = obj.mobile;
-        u.email = obj.email;
-        showUserInfo();
-        console.log('You are already signedUP')
+      if (obj != null) {
+        if (obj.isSignedUp) {
+          u.firstName = obj.firstName;
+          u.lastName = obj.lastName;
+          u.mobile = obj.mobile;
+          u.email = obj.email;
+          showUserInfo();
+          console.log('You are already signedUP')
+        }
       }
-    }
-    var params = new URLSearchParams(location.search);
-    var tab = params.get('tab');
-    gotoTab(tab);
-
+      var params = new URLSearchParams(location.search);
+      var tab = params.get('tab');
+      gotoTab(tab);
+    });
   });
   function onLoginSubmit() {
     var k = $('#mobile').val();
@@ -234,7 +236,7 @@
 
     return true;
   }
-  function gotoTab(tab){
+  function gotoTab(tab) {
     ((tab == 'signup') && ($('.nav-tabs a[href="#signup"]').tab('show')));
     ((tab == 'home') && ($('.nav-tabs a[href="#home"]').tab('show')));
   }
@@ -268,11 +270,11 @@
     $('#home input').prop('readonly', true);
   }
   function clearStorage(tab) {
-    localStorage.clear();    
-    location.href = 'index.html' + ((tab !=undefined ? ('?tab=' + tab):''));
+    localStorage.clear();
+    location.href = 'index.html' + ((tab != undefined ? ('?tab=' + tab) : ''));
   }
 
-  function mobileOnlyBrowser(){
+  function mobileOnlyBrowser() {
 
   }
 </script>

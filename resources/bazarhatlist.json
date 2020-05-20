@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "name": "Jotghanashyam Bazar",
+      "value": "Jotghanashyam Bazar"
+    },
+    {
+      "id": 1,
+      "name": "Jotghanashyam Dakshin Para Bazar",
+      "value": "Jotghanashyam Dakshin Para Bazar"
+    },
+    {
+      "id": 2,
+      "name": "Palashpai- Kamarghat Bazar",
+      "value": "Palashpai- Kamarghat Bazar"
+    },
+    {
+      "id": 3,
+      "name": "Sitapur- Manua Bazar",
+      "value": "Sitapur- Manua Bazar"
+    },
+    {
+        "id": 4,
+        "name": "Jayramchak Bazar",
+        "value": "Jayramchak Bazar"
+      },
+      {
+        "id": 5,
+        "name": "Azuria Bazar",
+        "value": "Azuria Bazar"
+      }
+
+  ]

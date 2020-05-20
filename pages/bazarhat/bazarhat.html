@@ -1,0 +1,122 @@
+<div class="container" onload="onloadTest();">
+    <form id="frmBazar" autocomplete="on" onsubmit="return onBazarSubmit();">
+        <div class="form-group">
+            <!-- <label for="bazar">Select Your nearest Market:</label><span style="color: red;">*</span> -->
+            <select required class="form-control" id="bazar" oninvalid="setCustomValidity('Please choose a market!')"
+                onchange="try{setCustomValidity('')}catch(e){}">
+            </select>
+            <!-- <span style="color: red;">*</span> -->
+            <h4></h4>
+            <select class="form-control" id="category">
+                <option value="">All Category</option>
+                <optgroup label="Shops">
+                    <option value="shop-grocery">Grocery</option>
+                    <option value="shop-sweets">Sweets</option>
+                    <option value="shop-others">Others (Xerox\Stationary\Mobile..)</option>
+                </optgroup>
+                <optgroup label="Food">
+                    <option value="food-veg">Veg</option>
+                    <option value="food-non-veg">Non-veg(Meat\Fish)</option>
+                    <option value="food-grocery">Grocery</option>
+                </optgroup>
+            </select>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit">
+
+    </form>
+    <!-- <div style="left:0;right:0;position: fixed;">
+        <hr style="margin: 3px">
+    </div> -->
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <input type="text" id="myInput" onkeyup="searchTable(1)" placeholder="Search for names.." class="my-searBox">
+        <div class="table-responsive">
+            <table class="table cell-border compact stripe"" id="myTable">
+                <thead style="background-color: #f1f1f1;">
+                    <tr>
+                        <th>#</th>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <!-- <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Anna</td>
+                        <td>Pitt</td>
+                        <td>35</td>
+                    </tr>
+                </tbody> -->
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    (function () {
+        _data.bazarList()
+            .then(d => {
+                makeDropdown($('#bazar'), d, 'Choose nearest market...', '');
+                init([]);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    })();
+
+    function onBazarSubmit() {
+        var c = $('#category').val();
+        _data.bazarhatData()
+            .then(d => {
+                c!='' && (d = d.filter((x)=>x.category == c));
+                //init(d);
+                table.clear().rows.add(d).draw();
+            })
+            .catch(error => {
+                console.log(error);
+            });        
+    }
+
+    function init(data) {
+        table = $('#myTable').DataTable({
+            "paging": false,
+            scrollY: 400,
+            order: [[1,"desc"]],
+            searching: false,
+            select: true,
+            "data": data,
+            "columns": [
+                {
+                    "title": "#Id",
+                    "data": "",
+                    "defaultContent": "",
+                    orderable: false,
+                    render: function (data, type, row, meta) {
+                        return (meta.row + 1);
+                    }
+                },
+                {
+                    "title": "Item",
+                    "data": "name",
+                    "defaultContent": ""
+                },
+                {
+                    "title": "Price(₹)",
+                    "data": "price",
+                    "defaultContent": ""
+                },
+                {
+                    "title": "Quantity",
+                    "data": "qty",
+                    "defaultContent": ""
+                }
+            ]
+        });
+        table.on('order.dt search.dt', function () {
+            table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+    }
+</script>

@@ -6,11 +6,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../resources/theme/village.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="../js/userInfo.js"></script>
+    <script charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+    <script src="../js/require.js"></script>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -36,16 +39,7 @@
                                     <li><a href="#">My Para</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bazar-Hat<span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Daily Commodity</a></li>
-                                    <li><a href="#">Grocery Market</a></li>
-                                    <li><a href="#">Stationary</a></li>
-                                    <li><a href="#">Others</a></li>
-                                </ul>
-                            </li>
+                            <li onclick="showDailyCommodity(this)"><a href="#">Bazar-Hat</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Education<span
                                         class="caret"></span></a>
@@ -79,8 +73,7 @@
                     </div>
                 </div>
             </nav>
-
-            <div class="jumbotron text-center" style="margin-bottom: 1px; padding: 1px 5px 5px 5px;">
+            <div id='villageDiv' class="jumbotron text-center" style="margin-bottom: 1px; padding: 1px 5px 5px 5px;">
                 <h2 style="margin-top: 10px;">Welcome to <span id="villageSpan">Amader Gram</span></h2>
             </div>
 
@@ -88,75 +81,87 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div id="villageContent"></div>
+            <div id="dynamicContent"></div>
             <!-- <iframe src="#" id="villageFrame" width="100%" height="100%" style="display: none;"></iframe> -->
         </div>
     </div>
-    <div class="container-fluid" id="altVillageContent">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3>Column 1</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-            </div>
-            <div class="col-sm-4">
-                <h3>Column 2</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-            </div>
-            <div class="col-sm-4">
-                <h3>Column 3</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-            </div>
-        </div>
-    </div>
-
 </body>
 <script>
-    var u = new _USER();
+    var _u;
+    var _data;
+    // (function(){
+    //         alert('heloo');
+    //         require.loadRequiredFiles(['userInfo', 'resource','common'],['village']);
+    //     })();
     $(document).ready(function () {
-        var v = u.getVillage();
-        var obj = u.getUserInfo();
-        if (v != undefined || v != null) {
-            document.title = v;
-            $("#villageSpan").text(v);
-            $("#aVillage").text(v);
-            showVillageContent();
-        }
-
-        if (obj != null) {
-            if (obj.isSignedUp) {
-                u.firstName = obj.firstName;
-                u.lastName = obj.lastName;
-                u.mobile = obj.mobile;
-                u.email = obj.email;
-                setLoginUserInfo();
+        var require = new _require();
+        require.loadRequiredFiles(['userInfo', 'resource', 'common'], ['village'], function () {
+            _u = new _USER();
+            _data = new _DATA();
+            var v = _u.getVillage();
+            var obj = _u.getUserInfo();
+            if (v != undefined || v != null) {
+                document.title = v;
+                $("#villageSpan").text(v);
+                $("#aVillage").text(v);
+                showVillageContent();
             }
-        }
+
+            if (obj != null) {
+                if (obj.isSignedUp) {
+                    _u.firstName = obj.firstName;
+                    _u.lastName = obj.lastName;
+                    _u.mobile = obj.mobile;
+                    _u.email = obj.email;
+                    setLoginUserInfo();
+                }
+            }
+        });
     });
     function setLoginUserInfo() {
         $('#aLogin').parent().show();
-        $('#aSignedUp').text(' Signed in as ' + u.firstName);
+        $('#aSignedUp').text(' Signed in as ' + _u.firstName);
         $('#aLogin').text(' Logout!');
     }
     function showVillageContent() {
-        $.ajax({
-            url: './villages/' + u.getVillage().toLowerCase() + '.html',
-            type: 'GET',
-            success: function (data) {
-                //var content = $('<div>').append(data).find('#content');
-                $('#altVillageContent').hide();
-                $('#villageContent').html(data);
-            }
-        }).fail(function (jqXHR, textStatus, error) {
-            // Handle error here
-            if (location.href.search('pulak40') < 0) {
-                location.href = '../ignore/' + u.getVillage().toLowerCase() + '.html';
-            }
-        });
-        ;
+        var s = _u.getVillage().toLowerCase().replace(' ', '');
+        $('#villageDiv').show();
+        _data.villageContent(s)
+            .then(d => {
+                loadDynamicContent('dynamicContent', d);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
+
+    /***** Openning Bazar-Hat Page Content **********/
+    function showDailyCommodity(e) {
+        $(e).css('active');
+        $('[data-target="#myNavbar"]').trigger('click');
+        $('#villageDiv').hide();
+        _data.bazarhatView()
+            .then(d => {
+                loadDynamicContent('dynamicContent', d);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        // $.ajax({
+        //     url: './bazarhat/bazarhat.html',
+        //     type: 'GET',
+        //     success: function (data) {
+        //         loadDynamicContent('dynamicContent', data);
+        //     }
+        // }).fail(function (jqXHR, textStatus, error) {
+        //     // Handle error here
+        //     if (location.href.search('pulak40') < 0) {
+        //         location.href = '../ignore/dailycommodity.html';
+        //     }
+        // });
+    }
+    /*********************************************/
+
     function logOut() {
         localStorage.clear();
         location.reload();
