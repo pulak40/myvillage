@@ -36,5 +36,5 @@
     { "category": "food-veg", "name": "Potato", "price":"10", "qty":"1 KG"
     },
     { "category": "food-veg", "name": "Potato", "price":"10", "qty":"1 KG"
-    },
+    }
 ]

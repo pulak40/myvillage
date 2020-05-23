@@ -30,20 +30,20 @@
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.html">Home</a></li>
-                            <li class="dropdown">
+                            <li class="active" onclick="showVillageContent(this)"><a href="#">Village-Home</a></li>
+                            <!-- <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Village<span
                                         class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">My School</a></li>
                                     <li><a href="#">My Para</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                             <li onclick="showDailyCommodity(this)"><a href="#">Bazar-Hat</a></li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Education<span
                                         class="caret"></span></a>
                                 <ul class="dropdown-menu">
+                                    <li><a onclick="showMySchool(this)" href="#">My School</a></li>
                                     <li><a href="#">Education Councelling</a></li>
                                     <li><a href="#">Private Tution</a></li>
                                     <li><a href="#">Coaching Center</a></li>
@@ -61,7 +61,7 @@
                                     <li><a href="#">Others</a></li>
                                 </ul>
                             </li>
-                            <!-- <li><a href="index.html">Others Village</a></li> -->
+                            <li><a href="index.html">Back To Main</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="index.html?tab=signup"><span class="glyphicon glyphicon-user"></span><span
@@ -117,13 +117,19 @@
                 }
             }
         });
+        
+        // $('.nav.navbar-nav:first >li').on('click', function (e) {
+        //     $('.nav.navbar-nav:first >li').removeClass('active');
+        //     console.log('hi');
+        // });
     });
     function setLoginUserInfo() {
         $('#aLogin').parent().show();
         $('#aSignedUp').text(' Signed in as ' + _u.firstName);
         $('#aLogin').text(' Logout!');
     }
-    function showVillageContent() {
+    function showVillageContent(e) {
+        (typeof(e)!='undefined')&&(activeCurrentTab(e));
         var s = _u.getVillage().toLowerCase().replace(' ', '');
         $('#villageDiv').show();
         _data.villageContent(s)
@@ -135,10 +141,16 @@
             });
     }
 
+    function activeCurrentTab(e) {
+        $('.nav.navbar-nav:first >li').removeClass('active');
+        ($('#myNavbar').attr('aria-expanded') == 'true')&&($('[data-target="#myNavbar"]').trigger('click'));
+        $(e).addClass('active');
+    }
+
     /***** Openning Bazar-Hat Page Content **********/
     function showDailyCommodity(e) {
-        $(e).css('active');
-        $('[data-target="#myNavbar"]').trigger('click');
+        //$('[data-target="#myNavbar"]').trigger('click');
+        activeCurrentTab(e);
         $('#villageDiv').hide();
         _data.bazarhatView()
             .then(d => {
@@ -147,18 +159,19 @@
             .catch(error => {
                 console.log(error);
             });
-        // $.ajax({
-        //     url: './bazarhat/bazarhat.html',
-        //     type: 'GET',
-        //     success: function (data) {
-        //         loadDynamicContent('dynamicContent', data);
-        //     }
-        // }).fail(function (jqXHR, textStatus, error) {
-        //     // Handle error here
-        //     if (location.href.search('pulak40') < 0) {
-        //         location.href = '../ignore/dailycommodity.html';
-        //     }
-        // });
+    }
+    /*********************************************/
+    /**** Openning My School *********************/
+    function showMySchool(e){
+        activeCurrentTab(e);
+        $('#villageDiv').hide();
+        _data.myschoolView()
+            .then(d => {
+                loadDynamicContent('dynamicContent', d);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
     /*********************************************/
 

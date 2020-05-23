@@ -9,35 +9,50 @@ var _DATA = function () {
       dataType: 'text'
     });
   };
-  that.villageContent = function(vName){
+  that.villageContent = function (vName) {
     return constructAPICall({
-      url: './villages/' + _u.getVillage().toLowerCase().replace(' ','') + '.html?' + 'v=' + version,
+      url: './villages/' + _u.getVillage().toLowerCase().replace(' ', '') + '.html?' + 'v=' + version,
       type: 'GET'
     });
   }
   that.bazarList = function () {
     return constructAPICall({
-      url: '../resources/bazarhatlist.json?' + 'v=' + version,
+      url: '../resources/bazarhat/bazarhatlist.json?' + 'v=' + version,
       type: 'GET',
       contentType: 'application/json',
       dataType: 'text'
     });
   };
-  that.bazarhatView = function(vName){
+  that.bazarhatView = function (vName) {
     return constructAPICall({
       url: './bazarhat/bazarhat.html?' + 'v=' + version,
       type: 'GET'
     });
-  }
+  };
 
   that.bazarhatData = function () {
     return constructAPICall({
-      url: '../resources/bazarhat.json?' + 'v=' + version,
+      url: '../resources/bazarhat/bazarhat.json?' + 'v=' + version,
       type: 'GET',
       contentType: 'application/json',
       dataType: 'text'
     });
   };
-  
+
+  that.schoolList = function () {
+    return constructAPICall({
+      url: '../resources/education/schoollist.json?' + 'v=' + version,
+      type: 'GET',
+      contentType: 'application/json',
+      dataType: 'text'
+    });
+  };
+  that.myschoolView = function (vName) {
+    return constructAPICall({
+      url: './education/myschool.html?' + 'v=' + version,
+      type: 'GET'
+    });
+  }
+
   return that;
 }

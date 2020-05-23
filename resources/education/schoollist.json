@@ -1,0 +1,34 @@
+[
+    {
+      "id": 0,
+      "name": "Jotghanashyam Nilmoni High School (V-XII)",
+      "value": "Jotghanashyam Nilmoni High School (V-XII)",
+      "imgList": ["JNH_1.jpeg","JNH_2.jpeg","JNH_3.jpeg","JNH_4.jpeg","JNH_5.jpeg", "JNH_6.jpeg"]
+    },
+    {
+      "id": 1,
+      "name": "Jotghanashyam Primary School (I-IV)",
+      "value": "Jotghanashyam Primary School (I-IV)"
+    },
+    {
+      "id": 2,
+      "name": "Jotghanashyam Baby School",
+      "value": "Jotghanashyam Baby School"
+    },
+    {
+      "id": 3,
+      "name": "Bghawan Chak Patiram Sikshaniketan (V-X)",
+      "value": "Bghawan Chak Patiram Sikshaniketan (V-X)"
+    },
+    {
+        "id": 4,
+        "name": "Bghawan Chak Primary school (I-IV)",
+        "value": "Bghawan Chak Primary school (I-IV)"
+      },
+      {
+        "id": 5,
+        "name": "Palashpai Fitting Center (Infant)",
+        "value": "Palashpai Fitting Center (Infant)"
+      }
+
+  ]
