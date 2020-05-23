@@ -1,6 +1,6 @@
 var _require = function () {
     var that = {};
-    var version = '2.0.0';
+    var version = '1.0.01';
     that.loadRequiredFiles = function (scripts, styles,callback) {
         var filesloaded = 0;
         var filestoload = scripts.length + styles.length;

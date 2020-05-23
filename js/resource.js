@@ -1,6 +1,6 @@
 var _DATA = function () {
   var that = {};
-  var version = '1.0.0';
+  var version = '1.0.01';
   that.villageList = function () {
     return constructAPICall({
       url: '../resources/village.json?' + 'v=' + version,
