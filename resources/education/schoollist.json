@@ -3,32 +3,75 @@
       "id": 0,
       "name": "Jotghanashyam Nilmoni High School (V-XII)",
       "value": "Jotghanashyam Nilmoni High School (V-XII)",
-      "imgList": ["JNH_1.jpeg","JNH_2.jpeg","JNH_3.jpeg","JNH_4.jpeg","JNH_5.jpeg", "JNH_6.jpeg"]
+      "info": "<p><b class='bd-blue'>Jotghanashyam Nilmoni High School</b> is located in <b class='bd-blue'>Daspur II </b> Block in <b class='bd-blue'>Ghatal subdivision</b> of <b class='bd-blue'>Paschim      Medinipur district</b> in the state of <b class='bd-blue'>West Bengal, India</b>.</p>",
+      "imgList": [
+        {"name":"JNH_1.jpeg", "caption": "School", "desc":"Info"},
+        {"name":"JNH_2.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_3.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_4.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_5.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_6.jpeg", "caption": "", "desc":""}
+        ]
     },
     {
       "id": 1,
       "name": "Jotghanashyam Primary School (I-IV)",
-      "value": "Jotghanashyam Primary School (I-IV)"
+      "value": "Jotghanashyam Primary School (I-IV)",
+      "info": "<p><b class='bd-blue'>Jotghanashyam Primary School</b> is located in <b class='bd-blue'>Daspur II </b> Block in <b class='bd-blue'>Ghatal subdivision</b> of <b class='bd-blue'>Paschim      Medinipur district</b> in the state of <b class='bd-blue'>West Bengal, India</b>.</p>",
+      "imgList": [
+        {"name":"JNH_3.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_4.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_5.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_6.jpeg", "caption": "", "desc":""}
+        ]
     },
     {
       "id": 2,
       "name": "Jotghanashyam Baby School",
-      "value": "Jotghanashyam Baby School"
+      "value": "Jotghanashyam Baby School",
+      "info": "<p><b class='bd-blue'>Jotghanashyam Baby School</b> is located in <b class='bd-blue'>Daspur II </b> Block in <b class='bd-blue'>Ghatal subdivision</b> of <b class='bd-blue'>Paschim      Medinipur district</b> in the state of <b class='bd-blue'>West Bengal, India</b>.</p>",
+      "imgList": [
+        {"name":"JNH_2.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_3.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_5.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_6.jpeg", "caption": "", "desc":""}
+        ]
     },
     {
       "id": 3,
-      "name": "Bghawan Chak Patiram Sikshaniketan (V-X)",
-      "value": "Bghawan Chak Patiram Sikshaniketan (V-X)"
+      "name": "Bhagaban Chak Patiram Sikshaniketan (V-X)",
+      "value": "Bhagaban Chak Patiram Sikshaniketan (V-X)",
+      "info": "<p><b class='bd-blue'>Bhagaban Chak Patiram Sikshaniketan</b> is located in <b class='bd-blue'>Daspur II </b> Block in <b class='bd-blue'>Ghatal subdivision</b> of <b class='bd-blue'>Paschim      Medinipur district</b> in the state of <b class='bd-blue'>West Bengal, India</b>.</p>",
+      "imgList": [
+        {"name":"JNH_2.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_3.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_5.jpeg", "caption": "", "desc":""},
+        {"name":"JNH_6.jpeg", "caption": "", "desc":""}
+        ]
     },
     {
         "id": 4,
-        "name": "Bghawan Chak Primary school (I-IV)",
-        "value": "Bghawan Chak Primary school (I-IV)"
+        "name": "Bhagaban Chak Primary school (I-IV)",
+        "value": "Bhagaban Chak Primary school (I-IV)",
+        "info": "<p><b class='bd-blue'>Bhagaban Chak Primary school</b> is located in <b class='bd-blue'>Daspur II </b> Block in <b class='bd-blue'>Ghatal subdivision</b> of <b class='bd-blue'>Paschim      Medinipur district</b> in the state of <b class='bd-blue'>West Bengal, India</b>.</p>",
+        "imgList": [
+          {"name":"JNH_2.jpeg", "caption": "", "desc":""},
+          {"name":"JNH_3.jpeg", "caption": "", "desc":""},
+          {"name":"JNH_5.jpeg", "caption": "", "desc":""},
+          {"name":"JNH_6.jpeg", "caption": "", "desc":""}
+          ]
       },
       {
         "id": 5,
         "name": "Palashpai Fitting Center (Infant)",
-        "value": "Palashpai Fitting Center (Infant)"
+        "value": "Palashpai Fitting Center (Infant)",
+        "info": "<p><b class='bd-blue'>Palashpai Fitting Center</b> is located in <b class='bd-blue'>Daspur II </b> Block in <b class='bd-blue'>Ghatal subdivision</b> of <b class='bd-blue'>Paschim      Medinipur district</b> in the state of <b class='bd-blue'>West Bengal, India</b>.</p>",
+        "imgList": [
+          {"name":"JNH_4.jpeg", "caption": "", "desc":""},
+          {"name":"JNH_3.jpeg", "caption": "", "desc":""},
+          {"name":"JNH_5.jpeg", "caption": "", "desc":""},
+          {"name":"JNH_6.jpeg", "caption": "", "desc":""}
+          ]
       }
 
   ]
